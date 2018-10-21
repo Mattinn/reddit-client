@@ -1,0 +1,13 @@
+.list-inline {
+  margin-top: 20px;
+}
+
+.author {
+  font-size: medium;
+  font-style: italic;
+}
+
+.Reddit-logo {
+  margin: 3px;
+  height: 20vmin;
+}
