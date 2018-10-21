@@ -5,6 +5,8 @@ import { Button } from 'reactstrap';
 import Header from './Header';
 import Posts from './Posts';
 
+// Array <String> contains names of the subreddits that are fetchable, sorted in alphabetical order.
+// Used to display categories in the header component and to fetch the data from Reddits jsonp API.
 const subreddits = getCategories().sort((a, b) => a.localeCompare(b));
 
 class App extends Component {
@@ -19,12 +21,14 @@ class App extends Component {
     }
   }
 
+  //Receives the value of the clicked button and saves it as the selectedCategory - before calling navigate.
   handleClick(i) {
     this.setState({selectedCategory: i.target.value}, () => {
       this.navigate();
     });
   }
 
+  //Creates buttons (from subreddit array) with onClick event, that will return the selected buttons value.
   componentDidMount() {
     const categories = subreddits.map((i) => {
       return (
@@ -32,11 +36,13 @@ class App extends Component {
       )
     });
 
+    //Start the app by fetching the default category 'AskReddit'.
     this.setState({categories: categories}, () => {
       this.navigate();
     });
   }
 
+  //Fetches the last 50 posts from the 'selectedCategory'.
   navigate = () => {
     let url = 'https://www.reddit.com/r/' + this.state.selectedCategory + '.json?limit=50';
     let posts;
@@ -44,6 +50,7 @@ class App extends Component {
     fetch(url).then(data => {
       return data.json();
     }).then(result => {
+      //Parse the response, it is used in the Posts component.
       posts = result.data.children.map((res) => {
         return ({
           title: res.data.title, score: res.data.score, author: res.data.author, url: res.data.url, img: res.data.thumbnail, 

@@ -29,12 +29,18 @@ const Timestamp = require('react-timestamp');
 export default class Posts extends Component {
   render() {
       let posts = this.props.posts.map((post, index) => {
+        
+        //Long posts dont display well, in that case we'll make a preview of the first 500 characters.
         let text = post.text ? post.text.slice(0,500) : '';
-        let score = post.score === 1 ? post.score + ' vote' : post.score + ' votes';
 
+        //If the text got 'previewed' add suspension points.  
         if(text && post.text.length > 500 ) {
-            text = text + '...';
+          text = text + '...';
         }
+
+        //Edge case for posts with 1 vote.
+        let score = (post.score === 1 || post.score === -1) ? post.score + ' vote' : post.score + ' votes';
+
         return (
           <div key={index}>
             <Post
