@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Live demo:
+https://reddit-client.000webhostapp.com/
+
 How to run:
 All you need to run this app is a recent version of node!
 
