@@ -25,4 +25,4 @@ Features:
   - Navigating back from Reddit, lands the user on the startup page 
 
 Example:
-![Screenshot](public\example.PNG)
+![Screenshot](example.PNG)
